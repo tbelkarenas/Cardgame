@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My Game</title>
+    <style>
+        body{background-color: #fff;}
+        #canvas {background-color: #fff;}
+    </style>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <script type="text/javascript">
+        var canvas;
+        var ctx;
+        var x;
+        var y;
+        var speed;
+
+
+        function start() {
+            document.onkeydown=keyListener;
+            x=50;  y=50; speed = 10;
+            canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+            drawObject();  }
+
+
+
+
+        function drawObject() {
+
+            ctx.fillStyle = "#000088";
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI*2, true);
+            ctx.closePath();
+            ctx.fill();  }
+
+        function keyListener(e){
+            if(!e){
+                //for IE
+                e = window.event;
+            }
+            if(e.keyCode==37 ){
+                //FYI-keyCode 37 is left arrow
+                x = x-speed;   }
+            if(e.keyCode==39){
+                //FYI-keyCode 39 is right arrow
+                x += speed;   }
+            if(e.keyCode==38){
+                // FYI - keyCode 38 is up arrow,
+                y -= speed;   }
+            if(e.keyCode==40){
+                // FYI - keyCode 40 is up arrow,
+                y += speed;   }
+
+
+            drawObject();}
+    </script>
+
+</head>
+<body onload="start();">
+
+<div class="container">
+    <div>  <h2>My Game</h2></div>
+</div>
+
+<div class="jumbotron" >
+    <canvas id="canvas" class="center-block" width="700" height="500"></canvas>
+</div>
+
+</body>
+</html>
